@@ -1,5 +1,5 @@
 <?php
-namespace Yauphp\core;
+namespace Yauphp\Core;
 
 /**
  * 可执行接口
