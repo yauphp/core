@@ -6,7 +6,7 @@ namespace Yauphp\Core;
  * @author Tomix
  *
  */
-class Loader
+class ClassLoader
 {
     /**
      * 命名空间前缀与目录映射
@@ -18,8 +18,8 @@ class Loader
      *自动加载主函数
      * @param string $class 类全名称
      */
-    public static function _autoLoad($class)
-    {
+    public static function _autoLoad($class){
+
         $path="";
         foreach (self::$m_classMap as $namespace=>$dir){
             if(!empty($namespace) && strpos($class, $namespace)===0){
@@ -38,11 +38,11 @@ class Loader
      * 载入加载器
      * @param array $map
      */
-    public static function load($map=[])
-    {
+    public static function load($map=[]){
+
         if(!empty($map)){
             self::$m_classMap=$map;
-            spl_autoload_register(["swiftphp\\system\\Loader", "_autoLoad"]);
+            spl_autoload_register(["Yauphp\\Core\\ClassLoader", "_autoLoad"]);
         }
     }
 }

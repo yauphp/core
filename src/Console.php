@@ -19,8 +19,7 @@ class Console
      * @param IPrinter $printer 接口实例
      * @param string $key              接口键
      */
-    public static function addPrinter(IPrinter $printer,$key="")
-    {
+    public static function addPrinter(IPrinter $printer, $key=""){
         if(empty($key)){
             $key=get_class($printer);
         }
@@ -31,8 +30,7 @@ class Console
      * 根据键移除打印接口
      * @param string $key 接口键
      */
-    public static function removePrinter($key)
-    {
+    public static function removePrinter($key){
         if(array_key_exists($key, self::$m_printers)){
             unset(self::$m_printers[$key]);
         }
@@ -41,8 +39,8 @@ class Console
     /**
      * 清空所有的打印接口
      */
-    public static function clearPrinters()
-    {
+    public static function clearPrinters(){
+
         self::$m_printers=[];
     }
 
@@ -52,8 +50,8 @@ class Console
      * @param string $attachTime 是否添加时间到消息前缀
      * @param array $formatArgs  格式化参数
      */
-    public static function print($msg, $attachTime = true, $formatArgs = [])
-    {
+    public static function print($msg, $attachTime = true, $formatArgs = []){
+
         if(!empty($formatArgs)){
             for($i=0;$i<count($formatArgs);$i++){
                 $msg=str_replace("{".$i.")", $formatArgs[$i], $msg);
@@ -73,8 +71,8 @@ class Console
      * @param string $attachTime 是否添加时间到消息前缀
      * @param array $formatArgs  格式化参数
      */
-    public static function printLine($msg, $attachTime = false, $formatArgs = [])
-    {
+    public static function printLine($msg, $attachTime = false, $formatArgs = []){
+
         $msg.="\r\n";
         self::print($msg,$attachTime,$formatArgs);
     }
@@ -83,8 +81,8 @@ class Console
      * 打印异常消息
      * @param \Exception $ex
      */
-    public static function printException(\Exception $ex)
-    {
+    public static function printException(\Exception $ex){
+
         $msg="code:".$ex->getCode()
             ."\r\nmessage:".$ex->getMessage()
             ."\r\ntrace:".$ex->getTraceAsString();

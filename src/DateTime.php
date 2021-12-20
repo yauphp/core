@@ -18,8 +18,8 @@ class DateTime
      * 构造函数
      * @param string $time 实例时间戳
      */
-    public function __construct($time="")
-    {
+    public function __construct($time=""){
+
         if($time==""){
             $time=time();
         }
@@ -33,8 +33,8 @@ class DateTime
      * 转为时间戳
      * @return int
      */
-    public function toTime()
-    {
+    public function toTime(){
+
         return $this->_time;
     }
 
@@ -42,8 +42,8 @@ class DateTime
      * 转为系统\DateTime对象
      * @return \DateTime
      */
-    public function toDateTime()
-    {
+    public function toDateTime() :\DateTime {
+
         $dateTime=new \DateTime();
         $dateTime->setTimestamp($this->_time);
         return $dateTime;
@@ -53,8 +53,8 @@ class DateTime
      * 格式化为年月日时分秒字符串
      * @param string $format 格式化
      */
-    public function toString($format="Y-m-d H:i:s")
-    {
+    public function toString($format="Y-m-d H:i:s"){
+
         return date($format,$this->_time);
     }
 
@@ -63,8 +63,8 @@ class DateTime
      * @param string $format
      * @return string
      */
-    public function toDateString($format="Y-m-d")
-    {
+    public function toDateString($format="Y-m-d"){
+
         return $this->toString($format);
     }
 
@@ -72,40 +72,40 @@ class DateTime
      * 格式化为时分秒字符串
      * @param string $format
      */
-    public function toTimeString($format="H:i:s")
-    {
+    public function toTimeString($format="H:i:s"){
+
         return $this->toString($format);
     }
 
     /**
      * 获取当前实例表示的四位数年份
      */
-    public function getYear()
-    {
+    public function getYear(){
+
         return date("Y",$this->_time);
     }
 
     /**
      * 获取当前实例表示的二位数月份
      */
-    public function getMonth()
-    {
+    public function getMonth(){
+
         return date("n",$this->_time);
     }
 
     /**
      * 获取当前实例表示的二位数日期
      */
-    public function getDay()
-    {
+    public function getDay(){
+
         return date("j",$this->_time);
     }
 
     /**
      * 获取当前实例表示的二位数小时数
      */
-    public function getHour()
-    {
+    public function getHour(){
+
         return date("G",$this->_time);
     }
 
@@ -113,8 +113,8 @@ class DateTime
      * 获取当前实例表示的二位数分钟数
      * @return number
      */
-    public function getMinute()
-    {
+    public function getMinute(){
+
         $min=intval(date("i",$this->_time));
         return $min;
     }
@@ -122,8 +122,8 @@ class DateTime
     /**
      * 获取当前实例表示的二位数秒数
      */
-    public function getSeconds()
-    {
+    public function getSeconds(){
+
         $min=intval(date("s",$this->_time));
         return $min;
     }
@@ -132,8 +132,8 @@ class DateTime
      * 获取表示当前月份的最后一天的日期
      * @return string
      */
-    public function getLastDayOfMonth()
-    {
+    public function getLastDayOfMonth(){
+
         return date("t",$this->_time);
     }
 
@@ -142,8 +142,7 @@ class DateTime
      * @param integer $seconds
      * @return DateTime
      */
-    public function addSeconds($seconds)
-    {
+    public function addSeconds($seconds) : DateTime{
         return new DateTime($this->_time+$seconds);
     }
 
@@ -152,8 +151,8 @@ class DateTime
      * @param integer $minutes
      * @return DateTime
      */
-    public function addMinutes($minutes)
-    {
+    public function addMinutes($minutes) : DateTime{
+
         return new DateTime($this->_time+$minutes*60);
     }
 
@@ -162,8 +161,8 @@ class DateTime
      * @param integer $hours
      * @return DateTime
      */
-    public function addHours($hours)
-    {
+    public function addHours($hours) : DateTime{
+
         return new DateTime($this->_time+$hours*3600);
     }
 
@@ -172,8 +171,8 @@ class DateTime
      * @param integer $days
      * @return DateTime
      */
-    public function addDays($days)
-    {
+    public function addDays($days) : DateTime{
+
         $time=$this->_time+3600*24*$days;
         $obj=new DateTime($time);
         return $obj;
@@ -184,8 +183,8 @@ class DateTime
      * @param integer $months
      * @return DateTime
      */
-    public function addMonths($months)
-    {
+    public function addMonths($months) : DateTime{
+
         if($months==0){
             return new DateTime($this->_time);
         }
@@ -229,18 +228,19 @@ class DateTime
      * @param int $years
      * @return DateTime
      */
-    public function addYears($years)
-    {
+    public function addYears($years) : DateTime{
+
         return $this->addMonths($years*12);
     }
+
 
     /**
      * 计算时间差
      * @param DateTime $fromTime
      * @return TimeSpan
      */
-    public function diffFrom(DateTime $time0)
-    {
+    public function diffFrom(DateTime $time0) : TimeSpan {
+
         $diff=$this->toTime()-$time0->toTime();
         $sign=$diff>=0?1:-1;
         $diff=abs($diff);
@@ -259,8 +259,8 @@ class DateTime
      * @param DateTime $time0
      * @return TimeSpan
      */
-    public static function diff(DateTime $time,DateTime $time0=null)
-    {
+    public static function diff(DateTime $time, DateTime $time0=null) : TimeSpan{
+
         if($time0==null){
             $time0=new DateTime();
         }
@@ -271,28 +271,31 @@ class DateTime
      * 是否为该月的最后一天
      * @return bool
      */
-    public function isLastDayOfMonth()
-    {
-        return (date("t",$this->_time)==$this->getDay());
+    public function isLastDayOfMonth() : bool{
+
+        return (date("t",$this->_time)===$this->getDay());
     }
+
 
     /**
      * 从字符串转为DateTime对象
      * @param string $strTime
      * @return DateTime
      */
-    public static function parse($strTime)
-    {
+    public static function parse($strTime) : DateTime{
+
         $time=new DateTime(strtotime($strTime));
         return $time;
     }
 
+
     /**
      * \DateTime转为DateTime
      * @param \DateTime $dateTime
+     * @return DateTime
      */
-    public static function fromDateTime(\DateTime $dateTime)
-    {
+    public static function fromDateTime(\DateTime $dateTime) : DateTime{
+
         return new DateTime($dateTime->getTimestamp());
     }
 
@@ -300,8 +303,8 @@ class DateTime
      * 表示当前时间的对象
      * @return DateTime
      */
-    public static function now()
-    {
+    public static function now() : DateTime{
+
         return new DateTime();
     }
 }
