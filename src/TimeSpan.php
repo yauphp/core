@@ -1,5 +1,5 @@
 <?php
-namespace Yauphp\Core;
+namespace yauphp\core;
 
 
 /**
