@@ -1,5 +1,5 @@
 <?php
-namespace yauphp\core;
+namespace Yauphp\Core;
 
 /**
  * 日期时间类

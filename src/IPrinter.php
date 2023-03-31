@@ -1,5 +1,5 @@
 <?php
-namespace yauphp\core;
+namespace Yauphp\Core;
 
 /**
  * 打印输出接口

@@ -1,5 +1,5 @@
 <?php
-namespace yauphp\core;
+namespace Yauphp\Core;
 
 /**
  * 自动加载类
